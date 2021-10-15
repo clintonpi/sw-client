@@ -13,8 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Home = () => {
 	const dispatch = useDispatch();
-	const [tab, setTab] = useState(void 0);
-	const roots = useSelector(state => state.roots);
+	const [tab, setTab] = useState<string>('0');
+	const roots = useSelector((state: any) => state.roots);
 
 	useEffect(() => {
 		dispatch(fetchRoots());
@@ -29,27 +29,31 @@ const Home = () => {
 			{roots.payload && (
 				<div className={'mt-3'}>
 					<Nav tabs>
-						{keys.map(k => (
-							<NavItem key={k}>
-								<NavLink
-									className={classnames({ active: tab === k })}
-									onClick={() => setTab(k)}
-								>
-									{sentenceCase(k)}
-								</NavLink>
-							</NavItem>
-						))}
+						{
+							keys.map(k => (
+								<NavItem key={k}>
+									<NavLink
+										className={classnames({ active: tab === k })}
+										onClick={() => setTab(k)}
+									>
+										{sentenceCase(k)}
+									</NavLink>
+								</NavItem>
+							))
+						}
 					</Nav>
 
 					<TabContent activeTab={tab}>
-						{keys.map(k => (
-							<TabPane
-								key={k}
-								tabId={k}
-							>
-								<code>{'todo: load resource table'}</code>
-							</TabPane>
-						))}
+						{
+							keys.map(k => (
+								<TabPane
+									key={`pane-${k}`}
+									tabId={k}
+								>
+									<code>{'todo: load resource table'}</code>
+								</TabPane>
+							))
+						}
 					</TabContent>
 				</div>
 			)}

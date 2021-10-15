@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Navbar, NavbarBrand } from 'reactstrap';
 
-const App = ({ children }) => (
+const App = ({ children }: any) => (
 	<div className={'App'}>
 		<Navbar
 			color={'light'}

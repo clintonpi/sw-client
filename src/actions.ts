@@ -5,7 +5,7 @@ import {
 	FETCH_ROOTS_SUCCESS,
 } from './constants';
 
-export const fetchRoots = () => dispatch => {
+export const fetchRoots = () => (dispatch: any) => {
 	dispatch({ type: FETCH_ROOTS });
 
 	const request = getRoots();
