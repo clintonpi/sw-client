@@ -1,34 +1,22 @@
-import { getRoot } from '../api';
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { fetchRoot } from '../redux/actions/rootActions';
+import { AppState, RootState } from '../models';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface RootProps {
-  type: string;
+  rootType: string;
 }
 
-const Root: React.FC<RootProps> = ({ type }) => {
-	const [rootData, setRootData] = useState< | null>(null);
-	const isMounted: MutableRefObject<boolean> = useRef(false);
+const Root: React.FC<RootProps> = ({ rootType }) => {
+	const dispatch = useDispatch();
+	const root: RootState = useSelector((state: AppState) => state.root);
 
 	useEffect(() => {
-		isMounted.current = true;
-
-		return () => {
-			isMounted.current = false;
-		};
-	}, []);
-
-	useEffect(() => {
-		if (type !== 'favourites') {
-			(async () => {
-				const rootData = await getRoot(type);
-
-				if (isMounted.current) setRootData(rootData);
-			})();
-		}
-	}, [type]);
+		if (rootType !== 'favourites') dispatch(fetchRoot(rootType));
+	}, [dispatch, rootType]);
 
 	return (
-		<div>{JSON.stringify(rootData)}</div>
+		<div>{root && root.payload && JSON.stringify(root.payload)}</div>
 	);
 };
 

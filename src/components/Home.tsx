@@ -1,3 +1,4 @@
+import Root from './Root';
 import classnames from 'classnames';
 import { fetchRoots } from '../redux/actions/rootsActions';
 import sentenceCase from 'sentence-case';
@@ -53,7 +54,7 @@ const Home: React.FC = () => {
 									key={`pane-${k}`}
 									tabId={k}
 								>
-									<code>{`todo: load resource table for ${k}`}</code>
+									{tab === k && <Root rootType={k} />}
 								</TabPane>
 							))
 						}
