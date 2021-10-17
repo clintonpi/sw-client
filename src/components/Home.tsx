@@ -1,6 +1,7 @@
 import classnames from 'classnames';
-import { fetchRoots } from '../actions';
+import { fetchRoots } from '../redux/actions/rootsActions';
 import sentenceCase from 'sentence-case';
+import { AppState, RootsState } from '../models';
 import {
 	Nav,
 	NavItem,
@@ -11,16 +12,18 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Home = () => {
+const Home: React.FC = () => {
 	const dispatch = useDispatch();
-	const [tab, setTab] = useState<string>('0');
-	const roots = useSelector((state: any) => state.roots);
+	const [tab, setTab] = useState<string>('people');
+	const roots: RootsState = useSelector((state: AppState) => state.roots);
 
 	useEffect(() => {
 		dispatch(fetchRoots());
 	}, [dispatch]);
 
 	const keys = Object.keys(roots.payload || {});
+
+	keys.push('favourites');
 
 	return (
 		<div>
@@ -50,7 +53,7 @@ const Home = () => {
 									key={`pane-${k}`}
 									tabId={k}
 								>
-									<code>{'todo: load resource table'}</code>
+									<code>{`todo: load resource table for ${k}`}</code>
 								</TabPane>
 							))
 						}

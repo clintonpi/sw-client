@@ -1,7 +1,8 @@
 import React from 'react';
+import { SwitchProps } from 'react-router';
 import { Container, Navbar, NavbarBrand } from 'reactstrap';
 
-const App = ({ children }: any) => (
+const App: React.FC<SwitchProps> = ({ children }) => (
 	<div className={'App'}>
 		<Navbar
 			color={'light'}
