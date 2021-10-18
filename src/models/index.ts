@@ -7,3 +7,6 @@ export * from './RootsAction';
 export * from './RootState';
 export * from './RootsState';
 export * from './constants';
+export * from './RootCardInfo';
+export * from './RootCardInfoPair';
+export * from './PayloadWithRoot';

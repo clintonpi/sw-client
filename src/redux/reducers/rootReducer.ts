@@ -1,7 +1,7 @@
 import { root } from './initialState';
 import { FETCH_ROOT, FETCH_ROOT_FAILURE, FETCH_ROOT_SUCCESS, RootAction, RootState } from '../../models';
 
-const rootReducer = (state: RootState = root, action: RootAction) => {
+const rootReducer = (state: RootState = root, action: RootAction): RootState => {
 	switch (action.type) {
 		case FETCH_ROOT:
 			return {

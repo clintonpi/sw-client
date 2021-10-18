@@ -1,4 +1,4 @@
-import { Root } from '.';
+import { PayloadWithRoot } from '.';
 import { FETCH_ROOT, FETCH_ROOT_FAILURE, FETCH_ROOT_SUCCESS } from './constants';
 
 interface FetchRoot {
@@ -8,7 +8,7 @@ interface FetchRoot {
 
 interface FetchRootSuccess {
   type: typeof FETCH_ROOT_SUCCESS;
-  payload: Root
+  payload: PayloadWithRoot;
 }
 
 interface FetchRootFailure {
