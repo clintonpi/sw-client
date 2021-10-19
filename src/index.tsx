@@ -6,7 +6,8 @@ import ReactDOM from 'react-dom';
 import { createGlobalStyle } from 'styled-components';
 import mainBG from './images/gray-and-black-galaxy.jpeg';
 import store from './redux/store';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, HashRouter as Router, Switch } from 'react-router-dom';
+// Using HashRouter instead of BrowserRouter because gh-pages
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const GlobalStyle = createGlobalStyle`
