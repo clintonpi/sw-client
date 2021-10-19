@@ -1,6 +1,8 @@
 import { doFavouriteAction } from '../helpers/doFavouriteAction';
+import { fetchRootSuccess } from '../redux/actions/rootActions';
 import { getRootCardInfo } from '../helpers/getRootCardInfo';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { FAVOURITES, Root } from '../models';
 import React, { useEffect, useState } from 'react';
 
@@ -34,19 +36,33 @@ const InfoPairList = styled.li`
 
 interface RootCardProps {
 	root: Root;
+	rootType: string;
 }
 
-const RootCard: React.FC<RootCardProps> = ({ root }) => {
+const RootCard: React.FC<RootCardProps> = ({ root, rootType }) => {
 	const [isFavourite, setIsFavourite] = useState<boolean>(false);
 	const { info1, info2, info3, info4, info5 } = getRootCardInfo(root);
 	const favouritesAsString = localStorage.getItem(FAVOURITES);
 	const favourites = favouritesAsString ? JSON.parse(favouritesAsString) : {};
+	const dispatch = useDispatch();
 
 	const handleFavourite = () => {
 		const actionType = isFavourite ? 'REMOVE' : 'ADD';
 
 		doFavouriteAction(root, actionType);
 		setIsFavourite(!isFavourite);
+
+		if (actionType === 'REMOVE' && rootType === FAVOURITES) {
+			delete favourites[root.url];
+			const favouritesRoots: Root[] = Object.values(favourites);
+
+			dispatch(fetchRootSuccess({
+				count: 0,
+				next: null,
+				previous: null,
+				results: favouritesRoots,
+			}));
+		}
 	};
 
 	useEffect(() => {
