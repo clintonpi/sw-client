@@ -1,9 +1,9 @@
 import Loader from './Loader';
 import RootCard from './RootCard';
-import { fetchRoot } from '../redux/actions/rootActions';
 import styled from 'styled-components';
 import { AppState, FAVOURITES, Root, RootState } from '../models';
 import React, { useEffect } from 'react';
+import { fetchRoot, fetchRootSuccess } from '../redux/actions/rootActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const RootPaneGrid = styled.div`
@@ -26,28 +26,44 @@ const RootPane: React.FC<RootProps> = ({ rootType }) => {
 	const root: RootState = useSelector((state: AppState) => state.root);
 
 	useEffect(() => {
-		if (rootType !== FAVOURITES) dispatch(fetchRoot(rootType));
+		if (rootType === FAVOURITES) {
+			const favouritesPayLoadWithRootAsString = localStorage.getItem(FAVOURITES);
+			const favouritesPayLoadWithRoot = favouritesPayLoadWithRootAsString ? JSON.parse(
+				favouritesPayLoadWithRootAsString
+			) : {};
+			const favouritesRoots: Root[] = Object.values(favouritesPayLoadWithRoot);
+
+			dispatch(fetchRootSuccess({
+				count: 0,
+				next: null,
+				previous: null,
+				results: favouritesRoots,
+			}));
+		}	else {
+			dispatch(fetchRoot(rootType));
+		}
 	}, [dispatch, rootType]);
 
-	return (
-		<>
-			{
-				root && root.payload ? (
-					<RootPaneGrid>
-						{
-							root.payload.results.map((result: Root) => (
-								<RootCard key={result.url}
-									root={result}
-								/>
-							))
-						}
-					</RootPaneGrid>
-				) : (
-					<Loader />
-				)
-			}
-		</>
-	);
+	return (() => {
+		if (root && root.payload && root.payload.results.length) {
+			return (
+				<RootPaneGrid>
+					{
+						root.payload.results.map((result: Root) => (
+							<RootCard key={result.url}
+								root={result}
+								rootType={rootType}
+							/>
+						))
+					}
+				</RootPaneGrid>
+			);
+		} else if (root && root.payload) {
+			return <p className="text-center">{'You will find only what you bring in.'}</p>;
+		}
+
+		return <Loader />;
+	})();
 };
 
 export default RootPane;
