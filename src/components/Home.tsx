@@ -3,6 +3,7 @@ import Loader from './Loader';
 import RootPane from './RootPane';
 import classnames from 'classnames';
 import { fetchRoots } from '../redux/actions/rootsActions';
+import logo from '../images/logo.png';
 import sentenceCase from 'sentence-case';
 import styled from 'styled-components';
 import { AppState, FAVOURITES, RootsState } from '../models';
@@ -17,7 +18,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Logo = styled.img.attrs({
-	src: '/images/logo.png',
+	src: logo,
 	alt: 'Star Wars',
 })`
 	width: 12.6875rem;

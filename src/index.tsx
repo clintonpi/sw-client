@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createGlobalStyle } from 'styled-components';
+import mainBG from './images/gray-and-black-galaxy.jpeg';
 import store from './redux/store';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -33,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
 		margin: 0;
 		padding: 0;
 		background-color: #000000 !important;
-		background-image: url('/images/gray-and-black-galaxy.jpeg');
+		background-image: url(${mainBG});
 		background-size: cover;
 		background-position: center;
 		background-attachment: fixed;
