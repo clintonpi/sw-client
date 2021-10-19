@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { fetchRoots } from '../redux/actions/rootsActions';
 import sentenceCase from 'sentence-case';
 import styled from 'styled-components';
-import { AppState, RootsState } from '../models';
+import { AppState, FAVOURITES, RootsState } from '../models';
 import {
 	Container,
 	Nav,
@@ -53,7 +53,7 @@ const Home: React.FC = () => {
 	const roots: RootsState = useSelector((state: AppState) => state.roots);
 	const keys = Object.keys(roots.payload || {});
 
-	keys.push('favourites');
+	keys.push(FAVOURITES);
 
 	useEffect(() => {
 		dispatch(fetchRoots());

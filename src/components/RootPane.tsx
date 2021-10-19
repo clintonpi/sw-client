@@ -2,7 +2,7 @@ import Loader from './Loader';
 import RootCard from './RootCard';
 import { fetchRoot } from '../redux/actions/rootActions';
 import styled from 'styled-components';
-import { AppState, Root, RootState } from '../models';
+import { AppState, FAVOURITES, Root, RootState } from '../models';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -26,7 +26,7 @@ const RootPane: React.FC<RootProps> = ({ rootType }) => {
 	const root: RootState = useSelector((state: AppState) => state.root);
 
 	useEffect(() => {
-		if (rootType !== 'favourites') dispatch(fetchRoot(rootType));
+		if (rootType !== FAVOURITES) dispatch(fetchRoot(rootType));
 	}, [dispatch, rootType]);
 
 	return (

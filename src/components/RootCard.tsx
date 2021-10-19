@@ -1,7 +1,8 @@
-import { Root } from '../models';
+import { doFavouriteAction } from '../helpers/doFavouriteAction';
 import { getRootCardInfo } from '../helpers/getRootCardInfo';
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import { FAVOURITES, Root } from '../models';
+import React, { useEffect, useState } from 'react';
 
 const Card = styled.div.attrs({
 	tabIndex: 0,
@@ -38,6 +39,19 @@ interface RootCardProps {
 const RootCard: React.FC<RootCardProps> = ({ root }) => {
 	const [isFavourite, setIsFavourite] = useState<boolean>(false);
 	const { info1, info2, info3, info4, info5 } = getRootCardInfo(root);
+	const favouritesAsString = localStorage.getItem(FAVOURITES);
+	const favourites = favouritesAsString ? JSON.parse(favouritesAsString) : {};
+
+	const handleFavourite = () => {
+		const actionType = isFavourite ? 'REMOVE' : 'ADD';
+
+		doFavouriteAction(root, actionType);
+		setIsFavourite(!isFavourite);
+	};
+
+	useEffect(() => {
+		if (favourites[root.url]) setIsFavourite(true);
+	}, [favourites, root.url]);
 
 	return (
 		<Card className="frost frost--has-hover brand-border p-4 transition pointer text-capitalize">
@@ -48,7 +62,7 @@ const RootCard: React.FC<RootCardProps> = ({ root }) => {
 				</div>
 				<button
 					className="align-self-start flex-shrink-0 bg-transparent border-0 p-1 text-reset"
-					onClick={() => setIsFavourite(!isFavourite)}
+					onClick={() => handleFavourite()}
 					title="Add to Favourites"
 				>{ isFavourite ? '★' : '☆'}</button>
 			</div>
