@@ -1,8 +1,9 @@
 import Loader from './Loader';
-import RootCard from './RootCard';
+import RootCard from './RootCard/RootCard';
+import RootCardLg from './RootCard/RootCardLg';
 import styled from 'styled-components';
 import { AppState, FAVOURITES, Root, RootState } from '../models';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchRoot, fetchRootSuccess } from '../redux/actions/rootActions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -24,6 +25,8 @@ interface RootProps {
 const RootPane: React.FC<RootProps> = ({ rootType }) => {
 	const dispatch = useDispatch();
 	const root: RootState = useSelector((state: AppState) => state.root);
+	const [currentRootCard, setCurrentRootCard] = useState<Root | null>(null);
+	const [cardToFocus, setCardToFocus] = useState<EventTarget | null>(null);
 
 	useEffect(() => {
 		if (rootType === FAVOURITES) {
@@ -47,16 +50,30 @@ const RootPane: React.FC<RootProps> = ({ rootType }) => {
 	return (() => {
 		if (root && root.payload && root.payload.results.length) {
 			return (
-				<RootPaneGrid>
+				<div className="position-relative">
+					<RootPaneGrid>
+						{
+							root.payload.results.map((result: Root) => (
+								<RootCard
+									key={result.url}
+									root={result}
+									rootType={rootType}
+									setCardToFocus={setCardToFocus}
+									setCurrentRootCard={setCurrentRootCard}
+								/>
+							))
+						}
+					</RootPaneGrid>
 					{
-						root.payload.results.map((result: Root) => (
-							<RootCard key={result.url}
-								root={result}
-								rootType={rootType}
+						currentRootCard && (
+							<RootCardLg
+								cardToFocus={cardToFocus}
+								root={currentRootCard}
+								setCurrentRootCard={setCurrentRootCard}
 							/>
-						))
+						)
 					}
-				</RootPaneGrid>
+				</div>
 			);
 		} else if (root && root.payload) {
 			return <p className="text-center">{'You will find only what you bring in.'}</p>;

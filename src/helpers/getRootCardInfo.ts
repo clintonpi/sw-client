@@ -20,6 +20,21 @@ export const getRootCardInfo = (root: Root): RootCardInfo => {
 		value: '',
 	};
 
+	let info6: RootCardInfoPair = {
+		key: '',
+		value: '',
+	};
+
+	let info7: RootCardInfoPair = {
+		key: '',
+		value: '',
+	};
+
+	let info8: RootCardInfoPair = {
+		key: '',
+		value: '',
+	};
+
 	if ('characters' in root) { // Implies Film
 		info1 = root.title;
 		info2 = `By ${root.producer}`;
@@ -34,6 +49,18 @@ export const getRootCardInfo = (root: Root): RootCardInfo => {
 		info5 = {
 			key: 'Release Date',
 			value: root.release_date.split('T')[0],
+		};
+		info6 = {
+			key: 'Edited On',
+			value: root.edited.split('T')[0],
+		};
+		info7 = {
+			key: 'Director',
+			value: root.director,
+		};
+		info8 = {
+			key: '',
+			value: '',
 		};
 	} else if ('birth_year' in root) { // Implies Person
 		info1 = root.name;
@@ -50,6 +77,18 @@ export const getRootCardInfo = (root: Root): RootCardInfo => {
 			key: 'Height',
 			value: root.height,
 		};
+		info6 = {
+			key: 'Skin Colour',
+			value: root.skin_color,
+		};
+		info7 = {
+			key: 'Hair Colour',
+			value: root.hair_color,
+		};
+		info8 = {
+			key: 'Mass',
+			value: root.mass,
+		};
 	} else if ('climate' in root) { // Implies Planet
 		info1 = root.name;
 		info2 = `${root.diameter} in Diameter`;
@@ -64,6 +103,18 @@ export const getRootCardInfo = (root: Root): RootCardInfo => {
 		info5 = {
 			key: 'Population',
 			value: root.population,
+		};
+		info6 = {
+			key: 'Gravity',
+			value: root.gravity,
+		};
+		info7 = {
+			key: 'Rotation Period',
+			value: root.rotation_period,
+		};
+		info8 = {
+			key: 'Orbital Period',
+			value: root.orbital_period,
 		};
 	} else if ('average_height' in root) { // Implies Specie
 		info1 = root.name;
@@ -80,6 +131,18 @@ export const getRootCardInfo = (root: Root): RootCardInfo => {
 			key: 'Language',
 			value: root.language,
 		};
+		info6 = {
+			key: 'Eye Colours',
+			value: root.eye_colors,
+		};
+		info7 = {
+			key: 'Hair Colours',
+			value: root.hair_colors,
+		};
+		info8 = {
+			key: 'Skin Colours',
+			value: root.skin_colors,
+		};
 	} else if ('MGLT' in root) { // Implies Starship
 		info1 = root.name;
 		info2 = `Model: ${root.model}`;
@@ -94,6 +157,18 @@ export const getRootCardInfo = (root: Root): RootCardInfo => {
 		info5 = {
 			key: 'Passangers',
 			value: root.passengers,
+		};
+		info6 = {
+			key: 'Class',
+			value: root.starship_class,
+		};
+		info7 = {
+			key: 'Cost In Credits',
+			value: root.cost_in_credits,
+		};
+		info8 = {
+			key: 'Hyperdrive Rating',
+			value: root.hyperdrive_rating,
 		};
 	} else if ('vehicle_class' in root) { // Implies Vehicle
 		info1 = root.name;
@@ -110,7 +185,19 @@ export const getRootCardInfo = (root: Root): RootCardInfo => {
 			key: 'Passangers',
 			value: root.passengers,
 		};
+		info6 = {
+			key: 'Class',
+			value: root.vehicle_class,
+		};
+		info7 = {
+			key: 'Cost In Credits',
+			value: root.cost_in_credits,
+		};
+		info8 = {
+			key: 'Max Atmosphering speed',
+			value: root.max_atmosphering_speed,
+		};
 	}
 
-	return { info1, info2, info3, info4, info5 };
+	return { info1, info2, info3, info4, info5, info6, info7, info8 };
 };

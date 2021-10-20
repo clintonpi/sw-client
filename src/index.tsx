@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
 		--text-xl: calc(var(--text-lg) + var(--text-scale-difference));
 		--text-2xl: calc(var(--text-xl) + var(--text-scale-difference));
 		--brand-border: 1px solid rgba(255, 255, 255, .5);
+		--rounded-md: 0.625rem;
 		--glass: rgba(255, 255, 255, .05);
 		--glass--md: rgba(255, 255, 255, .1);
 		--timing-base: .3s;
@@ -79,6 +80,10 @@ const GlobalStyle = createGlobalStyle`
 
 	.brand-border {
 		border: var(--brand-border);
+	}
+
+	.rounded-md {
+		border-radius: var(--rounded-md);
 	}
 
 	.frost {

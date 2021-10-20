@@ -6,4 +6,7 @@ export interface RootCardInfo {
   info3: RootCardInfoPair;
   info4: RootCardInfoPair;
   info5: RootCardInfoPair;
+  info6: RootCardInfoPair;
+  info7: RootCardInfoPair;
+  info8: RootCardInfoPair;
 }
