@@ -37,36 +37,40 @@ const RootPane: React.FC<RootProps> = ({ rootType }) => {
 	}, [dispatch, rootType]);
 
 	return (() => {
-		if (root && root.payload && root.payload.results.length) {
-			return (
-				<div className="position-relative">
-					<RootPaneGrid>
+		if (root.payload) {
+			if (root.payload.results.length) {
+				return (
+					<div className="position-relative">
+						<RootPaneGrid>
+							{
+								root.payload.results.map((result: Root) => (
+									<RootCard
+										key={result.url}
+										root={result}
+										rootType={rootType}
+										setCardToFocus={setCardToFocus}
+										setCurrentRootCard={setCurrentRootCard}
+									/>
+								))
+							}
+						</RootPaneGrid>
 						{
-							root.payload.results.map((result: Root) => (
-								<RootCard
-									key={result.url}
-									root={result}
-									rootType={rootType}
-									setCardToFocus={setCardToFocus}
+							currentRootCard && (
+								<RootCardLg
+									cardToFocus={cardToFocus}
+									root={currentRootCard}
 									setCurrentRootCard={setCurrentRootCard}
 								/>
-							))
+							)
 						}
-					</RootPaneGrid>
-					{
-						currentRootCard && (
-							<RootCardLg
-								cardToFocus={cardToFocus}
-								root={currentRootCard}
-								setCurrentRootCard={setCurrentRootCard}
-							/>
-						)
-					}
-				</div>
-			);
-		} else if (root && root.payload) {
+					</div>
+				);
+			}
+
 			return <p className="text-center text-highlight">{'You will find only what you bring in.'}</p>;
 		}
+
+		if (root.error) return <p className="text-center text-highlight">{root.error.toString()}</p>;
 
 		return <Loader />;
 	})();
