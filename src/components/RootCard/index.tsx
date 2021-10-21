@@ -68,7 +68,7 @@ const RootCard: React.FC<RootCardProps> = ({ root, rootType, setCardToFocus, set
 				<RootCardHeaderBtn
 					onClick={handleFavourite}
 					onKeyDown={e => e.stopPropagation()} // Because this event triggers that of the parent element
-					title="Add to Favourites"
+					title={`${isFavourite ? 'Remove from' : 'Add to'} Favourites`}
 				>
 					{ isFavourite ? '★' : '☆'}
 				</RootCardHeaderBtn>
