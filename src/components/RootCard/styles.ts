@@ -17,7 +17,6 @@ export const RootCardHeaderBtn = styled.button`
   border: 0;
   padding: .25rem;
   color: inherit;
-  text-shadow: inherit;
 `;
 
 export const RootCardList = styled.ul`
@@ -90,4 +89,5 @@ export const RootCardLgWrap = styled.div`
 	margin: auto;
 	width: 95%;
 	max-width: 37rem;
+  background-color: rgba(0, 0, 0, .6) !important;
 `;

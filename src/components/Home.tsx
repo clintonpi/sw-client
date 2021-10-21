@@ -35,7 +35,6 @@ const NavButton = styled.button`
 	border: 1px solid transparent;
 	padding: .75rem 1rem;
 	color: inherit;
-	text-shadow: inherit;
 	text-transform: uppercase;
 
 	&:hover {

@@ -76,7 +76,7 @@ const RootPane: React.FC<RootProps> = ({ rootType }) => {
 				</div>
 			);
 		} else if (root && root.payload) {
-			return <p className="text-center">{'You will find only what you bring in.'}</p>;
+			return <p className="text-center text-highlight">{'You will find only what you bring in.'}</p>;
 		}
 
 		return <Loader />;

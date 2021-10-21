@@ -23,8 +23,8 @@ const GlobalStyle = createGlobalStyle`
 		--text-2xl: calc(var(--text-xl) + var(--text-scale-difference));
 		--brand-border: 1px solid rgba(255, 255, 255, .5);
 		--rounded-md: 0.625rem;
-		--glass: rgba(255, 255, 255, .05);
-		--glass--md: rgba(255, 255, 255, .1);
+		--glass: rgba(0, 0, 0, .3);
+		--glass--md: rgba(0, 0, 0, .5);
 		--timing-base: .3s;
 	}
 
@@ -40,9 +40,8 @@ const GlobalStyle = createGlobalStyle`
 		background-size: cover;
 		background-position: center;
 		background-attachment: fixed;
-		color: rgba(255, 255, 255, .9) !important;
+		color: rgba(255, 255, 255, .8) !important;
 		font-family: 'Noto Sans Display', sans-serif !important;
-		text-shadow: 0 0 2px #000000;
 		word-break: break-word;
 	}
 
@@ -76,6 +75,11 @@ const GlobalStyle = createGlobalStyle`
 
 	.text-2xl {
 		font-size: var(--text-2xl);
+	}
+
+	.text-highlight {
+		color: rgba(255, 255, 255, .9);
+		text-shadow: 0 0 2px #000000;
 	}
 
 	.brand-border {

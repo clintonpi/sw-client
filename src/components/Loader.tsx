@@ -24,7 +24,7 @@ const Circle = styled.div`
 const Loader: React.FC = () => (
   <>
     <Circle />
-    <p className="text-center mt-2">{'Patience you must have, my young Padawan'}</p>
+    <p className="text-center text-highlight mt-2">{'Patience you must have, my young Padawan'}</p>
   </>
 );
 
