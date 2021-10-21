@@ -1,22 +1,11 @@
-import Loader from './Loader';
-import RootCard from './RootCard/RootCard';
-import RootCardLg from './RootCard/RootCardLg';
-import styled from 'styled-components';
-import { AppState, FAVOURITES, Root, RootState } from '../models';
+import Loader from '../Loader';
+import RootCard from '../RootCard';
+import RootCardLg from '../RootCard/RootCardLg';
+import { RootPaneGrid } from './Styles';
+import { AppState, FAVOURITES, Root, RootState } from '../../models';
 import React, { useEffect, useState } from 'react';
-import { fetchRoot, fetchRootSuccess } from '../redux/actions/rootActions';
+import { fetchRoot, fetchRootSuccess } from '../../redux/actions/rootActions';
 import { useDispatch, useSelector } from 'react-redux';
-
-const RootPaneGrid = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	
-	@media (min-width: 768px) {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-	}
-`;
 
 interface RootProps {
   rootType: string;

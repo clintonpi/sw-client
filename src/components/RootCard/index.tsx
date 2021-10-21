@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { FAVOURITES, Root } from '../../models';
 import {
 	InfoPairListItem, InfoValue, MainInfoKey, RootCardHeader, RootCardHeaderBtn, RootCardList, SubInfoKey,
-} from './styles';
+} from './Styles';
 import React, {
 	Dispatch, KeyboardEvent, MouseEvent, SetStateAction, useEffect, useState,
 } from 'react';

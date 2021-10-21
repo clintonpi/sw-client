@@ -9,7 +9,7 @@ import {
 	RootCardLgList,
 	RootCardLgWrap,
 	SubInfoKeyLg,
-} from './styles';
+} from './Styles';
 import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 interface RootCardLgProps {

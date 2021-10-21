@@ -1,51 +1,19 @@
 import { Link } from 'react-router-dom';
-import Loader from './Loader';
-import RootPane from './RootPane';
+import Loader from '../Loader';
+import RootPane from '../RootPane';
 import classnames from 'classnames';
-import { fetchRoots } from '../redux/actions/rootsActions';
-import logo from '../images/logo.png';
+import { fetchRoots } from '../../redux/actions/rootsActions';
 import sentenceCase from 'sentence-case';
-import styled from 'styled-components';
-import { AppState, FAVOURITES, RootsState } from '../models';
+import { AppState, FAVOURITES, RootsState } from '../../models';
 import {
 	Container,
-	Nav,
 	NavItem,
 	TabContent,
 	TabPane,
 } from 'reactstrap';
+import { Logo, NavButton, StyledNav } from './Styles';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-const Logo = styled.img.attrs({
-	src: logo,
-	alt: 'Star Wars',
-})`
-	width: 12.6875rem;
-`;
-
-const StyledNav = styled(Nav)`
-	border-top: var(--brand-border) !important;
-	border-bottom: var(--brand-border) !important;
-	justify-content: center;
-`;
-
-const NavButton = styled.button`
-	background-color: transparent;
-	border: 1px solid transparent;
-	padding: .75rem 1rem;
-	color: inherit;
-	text-transform: uppercase;
-
-	&:hover {
-		background-color: var(--glass--md);
-	}
-
-	&.active {
-		border-left: var(--brand-border);
-		border-right: var(--brand-border);
-	}
-`;
 
 const Home: React.FC = () => {
 	const dispatch = useDispatch();
