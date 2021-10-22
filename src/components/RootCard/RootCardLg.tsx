@@ -1,5 +1,5 @@
 import { Root } from '../../models';
-import { getRootCardInfo } from '../../helpers/getRootCardInfo';
+import { getRootCardInfo } from '../../helpers';
 import {
 	InfoPairListItem,
 	InfoValueLg,

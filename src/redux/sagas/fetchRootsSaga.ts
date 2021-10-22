@@ -1,4 +1,4 @@
-import { getRoots } from '../../api';
+import { getRoots } from '../../helpers';
 import { FETCH_ROOTS, Roots } from '../../models';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { fetchRootsFailure, fetchRootsSuccess } from '../actions/rootsActions';

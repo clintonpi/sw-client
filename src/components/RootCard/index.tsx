@@ -1,6 +1,4 @@
-import { doFavouriteAction } from '../../helpers/doFavouriteAction';
 import { fetchRootSuccess } from '../../redux/actions/rootActions';
-import { getRootCardInfo } from '../../helpers/getRootCardInfo';
 import { useDispatch } from 'react-redux';
 import { FAVOURITES, Root } from '../../models';
 import {
@@ -9,6 +7,7 @@ import {
 import React, {
 	Dispatch, KeyboardEvent, MouseEvent, SetStateAction, useEffect, useState,
 } from 'react';
+import { doFavouriteAction, getRootCardInfo } from '../../helpers';
 
 interface RootCardProps {
 	root: Root;
