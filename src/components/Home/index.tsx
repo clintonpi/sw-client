@@ -42,42 +42,48 @@ const Home: React.FC = () => {
 
 			<div className={'my-4'}>
 				{
-					roots.payload ? (
-					<>
-						<StyledNav className="frost mb-3"
-							tabs
-						>
-							{
-								keys.map(k => (
-									<NavItem key={k}>
-										<NavButton
-											className={classnames({ active: tab === k }, 'transition')}
-											data-testid={`root-btn-${k}`}
-											onClick={() => handleTab(k)}
-										>
-											{sentenceCase(k)}
-										</NavButton>
-									</NavItem>
-								))
-							}
-						</StyledNav><TabContent activeTab={tab}>
-							{
-								keys.map(k => (
-									<TabPane
-										key={`pane-${k}`}
-										tabId={k}
+					(() => {
+						if (roots.payload) {
+							return (
+								<>
+									<StyledNav className="frost mb-3"
+										tabs
 									>
-										<Container>
-											{tab === k && <RootPane rootType={k} />}
-										</Container>
-									</TabPane>
-								))
-							}
-						</TabContent>
-					</>
-					) : (
-						<Loader />
-					)
+										{
+											keys.map(k => (
+												<NavItem key={k}>
+													<NavButton
+														className={classnames({ active: tab === k }, 'transition')}
+														data-testid={`root-btn-${k}`}
+														onClick={() => handleTab(k)}
+													>
+														{sentenceCase(k)}
+													</NavButton>
+												</NavItem>
+											))
+										}
+									</StyledNav><TabContent activeTab={tab}>
+										{
+											keys.map(k => (
+												<TabPane
+													key={`pane-${k}`}
+													tabId={k}
+												>
+													<Container>
+														{tab === k && <RootPane rootType={k} />}
+													</Container>
+												</TabPane>
+											))
+										}
+									</TabContent>
+								</>
+							);
+						}
+
+						if (roots.error) return <p className="text-center text-highlight">{roots.error.toString()}</p>;
+
+						return <Loader />;
+					})()
 				}
 			</div>
 		</div>
