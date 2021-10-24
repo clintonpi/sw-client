@@ -52,6 +52,7 @@ const Home: React.FC = () => {
 									<NavItem key={k}>
 										<NavButton
 											className={classnames({ active: tab === k }, 'transition')}
+											data-testid={`root-btn-${k}`}
 											onClick={() => handleTab(k)}
 										>
 											{sentenceCase(k)}
