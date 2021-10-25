@@ -45,7 +45,7 @@ const Home: React.FC = () => {
 					(() => {
 						if (roots.payload) {
 							return (
-								<>
+								<div data-testid="roots-container">
 									<StyledNav className="frost mb-3"
 										tabs
 									>
@@ -76,11 +76,17 @@ const Home: React.FC = () => {
 											))
 										}
 									</TabContent>
-								</>
+								</div>
 							);
 						}
 
-						if (roots.error) return <p className="text-center text-highlight">{roots.error.toString()}</p>;
+						if (roots.error) {
+							return (
+								<p className="text-center text-highlight"
+									data-testid="error"
+								>{roots.error.toString()}</p>
+							);
+						}
 
 						return <Loader />;
 					})()
