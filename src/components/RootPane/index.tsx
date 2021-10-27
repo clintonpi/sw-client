@@ -1,4 +1,5 @@
 import Loader from '../Loader';
+import PaginationBtns from '../PaginationBtns';
 import RootCard from '../RootCard';
 import RootCardLg from '../RootCard/RootCardLg';
 import { RootPaneGrid } from './Styles';
@@ -57,6 +58,11 @@ const RootPane: React.FC<RootProps> = ({ rootType }) => {
 											))
 										}
 									</RootPaneGrid>
+									<PaginationBtns
+										root={root}
+										rootType={rootType}
+										setCurrentRootCard={setCurrentRootCard}
+									/>
 									{
 										currentRootCard && (
 											<RootCardLg
